@@ -1,0 +1,41 @@
+﻿@model recipeManagementAppN01650001.Models.RecipeDto
+
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1>Recipe Details</h1>
+            <a href="/Recipe/List" class="btn btn-primary mt-3">← Back to list</a>
+            <a href="/Recipe/Edit/@Model.RecipeId" class="btn btn-primary mt-3">+ Edit</a>
+            <a href="/Recipe/Delete/@Model.RecipeId" class="btn btn-danger mt-3">Delete</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p><strong>Title:</strong> @Model.Title</p>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Category:</strong> @Model.Category</p>
+            <p><strong>Cooking Time:</strong> @Model.CookingTime mins</p>
+
+            <p><strong>Ingredients:</strong></p>
+            <ul>
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    <li>@ingredient.IngredientQuantity @ingredient.IngredientUnit @ingredient.IngredientName</li>
+                }
+            </ul>
+
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                @foreach (var instruction in Model.Instructions)
+                {
+                    <li>@instruction.Description</li>
+                }
+            </ol>
+        </div>
+    </div>
+</div>

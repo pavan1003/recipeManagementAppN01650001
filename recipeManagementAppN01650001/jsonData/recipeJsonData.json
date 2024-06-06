@@ -1,0 +1,67 @@
+{
+  "RecipeId": 4,
+  "Title": "Tacos dingdong",
+  "Description": "Delicious taco recipe with seasoned meat, fresh vegetables, and cheese.",
+  "Category": "Mexican",
+  "CookingTime": 1000,
+  "Ingredients": [
+    {
+      "RecipeId": 4,
+      "IngredientName": "Ground Beef",
+      "IngredientQuantity": "1",
+      "IngredientUnit": "lbs"
+    },
+    {
+      "RecipeId": 4,
+      "IngredientName": "Taco Seasoning",
+      "IngredientQuantity": "1",
+      "IngredientUnit": "packet"
+    },
+    {
+      "RecipeId": 4,
+      "IngredientName": "Tortillas",
+      "IngredientQuantity": "8",
+      "IngredientUnit": "count"
+    },
+    {
+      "RecipeId": 4,
+      "IngredientName": "Lettuce",
+      "IngredientQuantity": "1",
+      "IngredientUnit": "cup"
+    },
+    {
+      "RecipeId": 4,
+      "IngredientName": "Tomatoes",
+      "IngredientQuantity": "2",
+      "IngredientUnit": "count"
+    },
+    {
+      "RecipeId": 4,
+      "IngredientName": "Shredded Cheese",
+      "IngredientQuantity": "1",
+      "IngredientUnit": "cup"
+    }
+  ],
+  "Instructions": [
+    {
+      "RecipeId": 4,
+      "StepNumber": 1,
+      "Description": "Brown the ground beef in a skillet over medium heat."
+    },
+    {
+      "RecipeId": 4,
+      "StepNumber": 2,
+      "Description": "Add taco seasoning and water as per packet instructions. Simmer until meat is cooked through."
+    },
+    {
+      "RecipeId": 4,
+      "StepNumber": 3,
+      "Description": "Warm tortillas in a separate skillet or microwave."
+    },
+    {
+      "RecipeId": 4,
+      "StepNumber": 4,
+      "Description": "Assemble tacos with meat, lettuce, tomatoes, and cheese. Enjoy!"
+    }
+  ]
+}
