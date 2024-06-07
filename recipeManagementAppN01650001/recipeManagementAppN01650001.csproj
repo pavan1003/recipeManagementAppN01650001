@@ -189,6 +189,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <None Include="jsonData\recipeJsonData.json" />
     <Compile Include="Migrations\202406020449109_InitialCreate.cs" />
     <Compile Include="Migrations\202406020449109_InitialCreate.designer.cs">
       <DependentUpon>202406020449109_InitialCreate.cs</DependentUpon>

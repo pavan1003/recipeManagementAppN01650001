@@ -16,11 +16,13 @@ namespace recipeManagementAppN01650001.Controllers
     public class RecipeDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        /// <summary>
+
+        // <summary>
         /// Return a list of recipes
         /// </summary>
         /// <returns>An Array of Recipes </returns>
         /// <example>
+        /// GET: api/RecipeData/ListRecipes
         /// </example>
         [HttpGet]
         [Route("api/RecipeData/ListRecipes")]
@@ -55,7 +57,14 @@ namespace recipeManagementAppN01650001.Controllers
             return RecipeDtos;
         }
 
-        // GET: api/RecipeData/FindRecipe/5
+        /// <summary>
+        /// Finds a specific recipe by its ID
+        /// </summary>
+        /// <param name="id">The ID of the recipe</param>
+        /// <returns>The recipe with the specified ID</returns>
+        /// <example>
+        /// GET: api/RecipeData/FindRecipe/5
+        /// </example>
         [ResponseType(typeof(Recipe))]
         [HttpGet]
         [Route("api/RecipeData/FindRecipe/{id}")]
@@ -92,7 +101,15 @@ namespace recipeManagementAppN01650001.Controllers
             return Ok(RecipeDto);
         }
 
-        // POST: api/RecipeData/AddRecipe
+        /// <summary>
+        /// Adds a new recipe
+        /// </summary>
+        /// <param name="recipe">The recipe to add</param>
+        /// <returns>Confirmation of recipe creation</returns>
+        /// <example>
+        /// POST: api/RecipeData/AddRecipe
+        /// BODY: { "Title": "New Recipe", "Description": "Description", "Category": "Category", "CookingTime": 30, "Ingredients": [{ "IngredientName": "Sugar", "IngredientQuantity": 1, "IngredientUnit": "cup" }], "Instructions": [{ "StepNumber": 1, "Description": "Mix ingredients" }] }
+        /// </example>
         [ResponseType(typeof(Recipe))]
         [HttpPost]
         [Route("api/RecipeData/AddRecipe")]
@@ -109,7 +126,14 @@ namespace recipeManagementAppN01650001.Controllers
             return Ok();
         }
 
-        // POST: api/RecipeData/DeleteRecipe/5
+        /// <summary>
+        /// Deletes a specific recipe by its ID
+        /// </summary>
+        /// <param name="id">The ID of the recipe to delete</param>
+        /// <returns>Confirmation of recipe deletion</returns>
+        /// <example>
+        /// POST: api/RecipeData/DeleteRecipe/5
+        /// </example>
         [ResponseType(typeof(Recipe))]
         [HttpPost]
         [Route("api/RecipeData/DeleteRecipe/{id}")]
@@ -127,7 +151,16 @@ namespace recipeManagementAppN01650001.Controllers
             return Ok();
         }
 
-        // POST: api/RecipeData/UpdateRecipe/5
+        /// <summary>
+        /// Updates a specific recipe by its ID
+        /// </summary>
+        /// <param name="id">The ID of the recipe to update</param>
+        /// <param name="recipe">The updated recipe data</param>
+        /// <returns>No content if update is successful</returns>
+        /// <example>
+        /// POST: api/RecipeData/UpdateRecipe/5
+        /// BODY: { "RecipeId": 5, "Title": "Updated Recipe", "Description": "Updated Description", "Category": "Updated Category", "CookingTime": 45, "Ingredients": [{ "IngredientId": 1, "IngredientName": "Salt", "IngredientQuantity": 2, "IngredientUnit": "tbsp" }], "Instructions": [{ "InstructionId": 1, "StepNumber": 1, "Description": "Updated Step" }] }
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         [Route("api/RecipeData/UpdateRecipe/{id}")]
@@ -234,6 +267,14 @@ namespace recipeManagementAppN01650001.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Checks if a recipe exists by its ID
+        /// </summary>
+        /// <param name="id">The ID of the recipe</param>
+        /// <returns>true if the recipe exists; otherwise, false</returns>
+        /// <example>
+        /// bool exists = RecipeExists(5);
+        /// </example>
         private bool RecipeExists(int id)
         {
             return db.Recipes.Count(e => e.RecipeId == id) > 0;
