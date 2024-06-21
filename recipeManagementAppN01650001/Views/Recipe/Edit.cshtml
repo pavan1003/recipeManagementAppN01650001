@@ -19,25 +19,25 @@
         <input type="hidden" name="RecipeId" value="@Model.RecipeId" />
         <div class="form-group row my-2">
             <label for="Title" class="col-md-1 col-form-label fw-bold">Title:</label>
-            <div class="col-md-10">
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" />
             </div>
         </div>
         <div class="form-group row my-2">
             <label for="Description" class="col-md-1 col-form-label fw-bold">Description:</label>
-            <div class="col-md-10">
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" />
             </div>
         </div>
         <div class="form-group row my-2">
             <label for="Category" class="col-md-1 col-form-label fw-bold">Category:</label>
-            <div class="col-md-10">
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Category" name="Category" value="@Model.Category" />
             </div>
         </div>
         <div class="form-group row my-2">
             <label for="CookingTime" class="col-md-1 col-form-label fw-bold">Cooking Time:</label>
-            <div class="col-md-10">
+            <div class="col-md-10 col-sm-10">
                 <input type="number" class="form-control" id="CookingTime" name="CookingTime" value="@Model.CookingTime" />
             </div>
         </div>
@@ -47,11 +47,12 @@
                 <label class="me-2 fw-bold">Ingredients:</label>
                 <button type="button" class="btn btn-primary" id="addIngredient">+</button>
             </div>
-            <div class="col-md-10 ms-3">
+            <div class="col-md-10 col-sm-10 ms-md-3 ms-sm-0">
                 <div id="ingredientsList">
                     @for (var i = 0; i < Model.Ingredients.Count; i++)
                     {
                         <div class="row mb-2 ingredient-item">
+                            <input type="hidden" name="Ingredients[@i].IngredientId" value="@Model.Ingredients[i].IngredientId" />
                             <div class="col d-flex justify-content-center align-items-center gap-2">
                                 <label>Name:</label>
                                 <input type="text" class="form-control" name="Ingredients[@i].IngredientName" value="@Model.Ingredients[i].IngredientName" />
@@ -64,7 +65,7 @@
                                 <label>Unit:</label>
                                 <input type="text" class="form-control" name="Ingredients[@i].IngredientUnit" value="@Model.Ingredients[i].IngredientUnit" />
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-1">
                                 <button type="button" class="btn btn-danger remove-ingredient" id="removeIngredient">-</button>
                             </div>
                         </div>
@@ -76,18 +77,17 @@
         <div class="form-group row  my-2 gap-2">
             <div>
                 <label class="me-2 fw-bold">Instructions:</label>
-                <button type="button" class="btn btn-primary" id="addInstruction">+</button>
+                <button type="button" class="btn btn-primary" id="addEditInstruction">+</button>
             </div>
-            <div class="col-md-10 ms-3">
+            <div class="col-md-12 col-sm-12 ms-md-3 ms-sm-0">
                 <div id="instructionsList">
                     @for (var i = 0; i < Model.Instructions.Count; i++)
                     {
                         <div class="row mb-2 instruction-item">
-                            <div class="col-md-5 d-flex align-items-center gap-2">
-                                <label>Step @(i+1):</label>
+                            <div class="col-11 d-flex align-items-center gap-2">
+                                <input type="hidden" name="Instructions[@i].InstructionId" value="@Model.Instructions[i].InstructionId" />
+                                <input type="text" class="form-control" style="width:10%" name="Instructions[@i].StepNumber" value="@Model.Instructions[i].StepNumber" />
                                 <input type="text" class="form-control" name="Instructions[@i].Description" value="@Model.Instructions[i].Description" />
-                            </div>
-                            <div class="col-md-1">
                                 <button type="button" class="btn btn-danger remove-instruction" id="removeInstruction">-</button>
                             </div>
                         </div>

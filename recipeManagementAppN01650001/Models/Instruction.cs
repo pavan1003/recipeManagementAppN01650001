@@ -15,6 +15,7 @@ namespace recipeManagementAppN01650001.Models
         public string Description { get; set; }
 
         [ForeignKey("Recipe")]
+
         // An Instruction is part of one Recipe
         public int RecipeId { get; set; }
         public virtual Recipe Recipe { get; set; }
@@ -24,5 +25,7 @@ namespace recipeManagementAppN01650001.Models
         public int InstructionId { get; set; }
         public int StepNumber { get; set; }
         public string Description { get; set; }
+        public int RecipeId { get; set; }
+        public string RecipeTitle { get; set; }
     }
 }

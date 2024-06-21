@@ -1,0 +1,62 @@
+﻿@model recipeManagementAppN01650001.Models.ViewModels.EditIngredient
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section Scripts {
+    <script src="~/Scripts/recipe.js"></script>
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1>Update Ingredient</h1>
+            <a href="/Ingredient/Details/@Model.SelectedIngredient.IngredientId" class="btn btn-primary mt-3">← Back to Ingredient Details</a>
+        </div>
+    </div>
+    <form action="/Ingredient/Update/@Model.SelectedIngredient.IngredientId" method="post" class="form-horizontal">
+        <input type="hidden" name="IngredientId" value="@Model.SelectedIngredient.IngredientId" />
+        <div class="form-group row my-2">
+            <label for="IngredientName" class="col-md-1 col-form-label fw-bold">Name:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="IngredientName" name="IngredientName" value="@Model.SelectedIngredient.IngredientName" />
+            </div>
+        </div>
+        <div class="form-group row my-2">
+            <label for="IngredientQuantity" class="col-md-1 col-form-label fw-bold">Quantity:</label>
+            <div class="col-md-10">
+                <input type="number" class="form-control" id="IngredientQuantity" name="IngredientQuantity" value="@Model.SelectedIngredient.IngredientQuantity" />
+            </div>
+        </div>
+        <div class="form-group row my-2">
+            <label for="IngredientUnit" class="col-md-1 col-form-label fw-bold">Unit:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="IngredientUnit" name="IngredientUnit" value="@Model.SelectedIngredient.IngredientUnit" />
+            </div>
+        </div>
+        <div class="form-group row my-2">
+            <label for="Recipe" class="col-md-1 col-form-label fw-bold">Recipe:</label>
+            <div class="col-md-10">
+                <select class="form-select" name="RecipeId">
+                    @foreach (var recipe in Model.RecipeOptions)
+                    {
+                        string selected = "";
+                        if (recipe.RecipeId == Model.SelectedIngredient.RecipeId)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@recipe.RecipeId" @selected >@recipe.Title</option>
+                    }
+
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col d-flex gap-4 justify-content-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="/Ingredient/Show/@Model.SelectedIngredient.IngredientId" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

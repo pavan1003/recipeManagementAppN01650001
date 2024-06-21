@@ -1,0 +1,34 @@
+﻿@model recipeManagementAppN01650001.Models.ViewModels.DetailsInstruction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1>Instruction Details</h1>
+            <a href="/Instruction/List" class="btn btn-primary mt-3">← Back to list</a>
+            <a href="/Instruction/Edit/@Model.SelectedInstruction.InstructionId" class="btn btn-primary mt-3">+ Edit</a>
+            <a href="/Instruction/DeleteConfirm/@Model.SelectedInstruction.InstructionId" class="btn btn-danger mt-3">Delete</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p><strong>Instruction Step:</strong> @Model.SelectedInstruction.StepNumber</p>
+            <p><strong>Instruction Description:</strong> @Model.SelectedInstruction.Description</p>
+
+            <p class="m-0">
+                <strong>
+                    Recipes Associated with this Instruction:
+                </strong>
+                <ul>
+                    @foreach (var recipe in Model.RelatedRecipes)
+                    {
+                        <li><a href="/Recipe/Show/@recipe.RecipeId">@recipe.Title</a></li>
+                    }
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

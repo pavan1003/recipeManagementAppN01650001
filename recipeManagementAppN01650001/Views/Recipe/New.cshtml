@@ -15,26 +15,26 @@
     <form action="/Recipe/Add/" method="post" class="form-horizontal">
         <input type="hidden" name="RecipeId" />
         <div class="form-group row my-2">
-            <label for="Title" class="col-md-1 col-form-label fw-bold">Title:</label>
-            <div class="col-md-10">
+            <label for="Title" class="col-2 col-form-label fw-bold">Title:</label>
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Title" name="Title" />
             </div>
         </div>
         <div class="form-group row my-2">
-            <label for="Description" class="col-md-1 col-form-label fw-bold">Description:</label>
-            <div class="col-md-10">
+            <label for="Description" class="col-2 col-form-label fw-bold">Description:</label>
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Description" name="Description" />
             </div>
         </div>
         <div class="form-group row my-2">
-            <label for="Category" class="col-md-1 col-form-label fw-bold">Category:</label>
-            <div class="col-md-10">
+            <label for="Category" class="col-2 col-form-label fw-bold">Category:</label>
+            <div class="col-md-10 col-sm-10">
                 <input type="text" class="form-control" id="Category" name="Category" />
             </div>
         </div>
         <div class="form-group row my-2">
-            <label for="CookingTime" class="col-md-1 col-form-label fw-bold">Cooking Time:</label>
-            <div class="col-md-10">
+            <label for="CookingTime" class="col-2 col-form-label fw-bold">Cooking Time:</label>
+            <div class="col-md-10 col-sm-10">
                 <input type="number" class="form-control" id="CookingTime" name="CookingTime" />
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <label class="me-2 fw-bold">Ingredients:</label>
                 <button type="button" class="btn btn-primary" id="addIngredient">+</button>
             </div>
-            <div class="col-md-10 ms-3">
+            <div class="col-md-10 col-sm-10 ms-md-3 ms-sm-0">
                 <div id="ingredientsList">
 
                     <div class="row mb-2 ingredient-item">
@@ -60,7 +60,7 @@
                             <label>Unit:</label>
                             <input type="text" class="form-control" name="Ingredients[0].IngredientUnit" />
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-1">
                             <button type="button" class="btn btn-danger remove-ingredient" id="removeIngredient">-</button>
                         </div>
                     </div>
@@ -74,15 +74,14 @@
                 <label class="me-2 fw-bold">Instructions:</label>
                 <button type="button" class="btn btn-primary" id="addInstruction">+</button>
             </div>
-            <div class="col-md-10 ms-3">
+            <div class="col-md-12 col-sm-12 ms-md-3 ms-sm-0">
                 <div id="instructionsList">
 
                     <div class="row mb-2 instruction-item">
-                        <div class="col-md-5 d-flex align-items-center gap-2">
+                        <div class="col-11 d-flex align-items-center gap-2">
                             <label>Step 1:</label>
+                            <input type="hidden" name="Instructions[0].StepNumber" value="1"/>
                             <input type="text" class="form-control" name="Instructions[0].Description" />
-                        </div>
-                        <div class="col-md-1">
                             <button type="button" class="btn btn-danger remove-instruction" id="removeInstruction">-</button>
                         </div>
                     </div>
@@ -91,7 +90,7 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-md-10 offset-sm-2">
+            <div class="col-md-10 col-sm-10 offset-sm-2">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <a href="/Recipe/List" class="btn btn-danger">Cancel</a>
             </div>

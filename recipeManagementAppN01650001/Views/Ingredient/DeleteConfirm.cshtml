@@ -1,0 +1,14 @@
+﻿@model recipeManagementAppN01650001.Models.IngredientDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<div id="containershow">
+    <h2>Are you sure you want to delete @Model.IngredientName ingredient ?</h2>
+    <p>This action cannot be undone.</p>
+    <a href="/Ingredient/Details/@Model.IngredientId" class="btn btn-outline-primary me-3">Cancel</a>
+    <form action="/Ingredient/Delete/@Model.IngredientId" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    </form>
+</div>

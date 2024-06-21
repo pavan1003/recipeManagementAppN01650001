@@ -16,6 +16,7 @@ namespace recipeManagementAppN01650001.Models
         public string IngredientUnit { get; set; }
 
         [ForeignKey("Recipe")]
+
         // An Ingredient is part of one Recipe
         public int RecipeId { get; set; }
         public virtual Recipe Recipe { get; set; }
@@ -26,5 +27,7 @@ namespace recipeManagementAppN01650001.Models
         public string IngredientName { get; set; }
         public string IngredientQuantity { get; set; }
         public string IngredientUnit { get; set; }
+        public int RecipeId { get; set; }
+        public string RecipeTitle { get; set; }
     }
 }

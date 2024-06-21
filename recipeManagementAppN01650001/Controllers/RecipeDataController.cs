@@ -56,12 +56,73 @@ namespace recipeManagementAppN01650001.Controllers
 
             return RecipeDtos;
         }
+        /// <summary>
+        /// Returns all recipes related to a particular ingredient ID
+        /// </summary>
+        /// <param name="id">Ingredient ID.</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: All recipes related to the specified ingredient ID
+        /// </returns>
+        /// <example>
+        /// GET: api/RecipeData/ListRecipesForIngredient/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(RecipeDto))]
+        [Route("api/RecipeData/ListRecipesForIngredient/{id}")]
+        public IHttpActionResult ListRecipesForIngredient(int id)
+        {
+            List<Recipe> Recipes = db.Recipes.Where(r => r.Ingredients.Any(i => i.IngredientId == id)).ToList();
+            List<RecipeDto> RecipeDtos = new List<RecipeDto>();
+
+            Recipes.ForEach(a => RecipeDtos.Add(new RecipeDto()
+            {
+                RecipeId = a.RecipeId,
+                Title = a.Title,
+                Description = a.Description,
+                Category = a.Category,
+                CookingTime = a.CookingTime
+            }));
+
+            return Ok(RecipeDtos);
+        }
 
         /// <summary>
-        /// Finds a specific recipe by its ID
+        /// Returns all recipes related to a particular instruction ID
+        /// </summary>
+        /// <param name="id">Instruction ID.</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: All recipes related to the specified instruction ID
+        /// </returns>
+        /// <example>
+        /// GET: api/RecipeData/ListRecipesForInstruction/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(RecipeDto))]
+        [Route("api/RecipeData/ListRecipesForInstruction/{id}")]
+        public IHttpActionResult ListRecipesForInstruction(int id)
+        {
+            List<Recipe> Recipes = db.Recipes.Where(r => r.Instructions.Any(i => i.InstructionId == id)).ToList();
+            List<RecipeDto> RecipeDtos = new List<RecipeDto>();
+
+            Recipes.ForEach(a => RecipeDtos.Add(new RecipeDto()
+            {
+                RecipeId = a.RecipeId,
+                Title = a.Title,
+                Description = a.Description,
+                Category = a.Category,
+                CookingTime = a.CookingTime
+            }));
+
+            return Ok(RecipeDtos);
+        }
+
+        /// <summary>
+        /// Finds a specific recipe by its ID, including ingredients and instructions
         /// </summary>
         /// <param name="id">The ID of the recipe</param>
-        /// <returns>The recipe with the specified ID</returns>
+        /// <returns>The recipe with the specified ID, including ingredients and instructions</returns>
         /// <example>
         /// GET: api/RecipeData/FindRecipe/5
         /// </example>
@@ -113,6 +174,7 @@ namespace recipeManagementAppN01650001.Controllers
         [ResponseType(typeof(Recipe))]
         [HttpPost]
         [Route("api/RecipeData/AddRecipe")]
+        [Authorize]
         public IHttpActionResult AddRecipe(Recipe recipe)
         {
             if (!ModelState.IsValid)
@@ -137,6 +199,7 @@ namespace recipeManagementAppN01650001.Controllers
         [ResponseType(typeof(Recipe))]
         [HttpPost]
         [Route("api/RecipeData/DeleteRecipe/{id}")]
+        [Authorize]
         public IHttpActionResult DeleteRecipe(int id)
         {
             Recipe recipe = db.Recipes.Find(id);
@@ -164,6 +227,7 @@ namespace recipeManagementAppN01650001.Controllers
         [ResponseType(typeof(void))]
         [HttpPost]
         [Route("api/RecipeData/UpdateRecipe/{id}")]
+        [Authorize]
         public IHttpActionResult UpdateRecipe(int id, Recipe recipe)
         {
 
@@ -177,7 +241,6 @@ namespace recipeManagementAppN01650001.Controllers
                 Debug.WriteLine("ID MISMATCH");
                 Debug.WriteLine(recipe.RecipeId);
                 Debug.WriteLine(recipe.Title);
-                Debug.WriteLine("ID MISMATCH");
 
                 return BadRequest();
             }

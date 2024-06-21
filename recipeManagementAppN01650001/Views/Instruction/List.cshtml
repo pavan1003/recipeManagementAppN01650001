@@ -1,0 +1,47 @@
+﻿@model IEnumerable<recipeManagementAppN01650001.Models.InstructionDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1>Instruction List</h1>
+            <a href="/Instruction/New" class="btn btn-primary mt-3">+ Add new Instruction</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Step Number</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ingredient in Model)
+                    {
+                        <tr>
+                            <td><a href="/Instruction/Details/@ingredient.InstructionId"> @ingredient.Description </a></td>
+                            <td>@ingredient.StepNumber</td>
+                            <td>
+                                <a href="/Instruction/Edit/@ingredient.InstructionId" class="btn btn-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/Instruction/DeleteConfirm/@ingredient.InstructionId" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

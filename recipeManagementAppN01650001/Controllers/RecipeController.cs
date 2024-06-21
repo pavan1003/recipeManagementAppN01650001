@@ -17,7 +17,14 @@ namespace recipeManagementAppN01650001.Controllers
 
         static RecipeController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                //cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44384/api/RecipeData/");
         }
 
@@ -70,9 +77,46 @@ namespace recipeManagementAppN01650001.Controllers
         /// </example>
         public ActionResult Error()
         {
-
             return View();
         }
+
+        /// <summary>
+        /// Retrieves the authentication token from the application's cookie and sets it in the HTTP client's headers.
+        /// This method ensures that the HTTP client is prepared for making authenticated requests to the WebAPI.
+        /// </summary>
+        /// <example>
+        /// Usage:
+        /// <code>
+        /// GetApplicationCookie();
+        /// // Now the client has the authentication token set in the headers and can make authenticated requests.
+        /// </code>
+        /// </example>
+        private void GetApplicationCookie()
+        {
+            string token = "";
+
+            // Remove any existing cookies from the HTTP client's headers to prevent caching issues.
+            client.DefaultRequestHeaders.Remove("Cookie");
+
+            // Check if the user is authenticated before proceeding.
+            if (!User.Identity.IsAuthenticated) return;
+
+            // Retrieve the authentication cookie from the current HTTP context.
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            // Log the token for debugging purposes.
+            Debug.WriteLine("Token Submitted is : " + token);
+
+            // If a token is found, add it to the HTTP client's headers.
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+            }
+
+            return;
+        }
+
 
         /// <summary>
         /// Displays the page to create a new recipe.
@@ -81,8 +125,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// <example>
         /// GET: Recipe/New
         /// </example>
+        [Authorize]
         public ActionResult New()
         {
+            GetApplicationCookie();//get token credentials
             return View();
         }
 
@@ -96,8 +142,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// BODY: { "Title": "New Recipe", "Description": "Description", "Category": "Category", "CookingTime": 30, "Ingredients": [{ "IngredientName": "Sugar", "IngredientQuantity": 1, "IngredientUnit": "cup" }], "Instructions": [{ "StepNumber": 1, "Description": "Mix ingredients" }] }
         /// </example>
         [HttpPost]
+        [Authorize]
         public ActionResult Add(Recipe recipe)
         {
+            GetApplicationCookie();//get token credentials
             Debug.WriteLine("the json payload is :");
 
             string url = "AddRecipe";
@@ -128,8 +176,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// <returns>A view with a form to edit the recipe</returns>
         /// <example>
         /// GET: Recipe/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie();//get token credentials
 
             string url = "FindRecipe/" + id;
 
@@ -154,8 +204,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// BODY: { "RecipeId": 5, "Title": "Updated Recipe", "Description": "Updated Description", "Category": "Updated Category", "CookingTime": 45, "Ingredients": [{ "IngredientId": 1, "IngredientName": "Salt", "IngredientQuantity": 2, "IngredientUnit": "tbsp" }], "Instructions": [{ "InstructionId": 1, "StepNumber": 1, "Description": "Updated Step" }] }
         /// </example>
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Recipe recipe)
         {
+            GetApplicationCookie();//get token credentials
             try
             {
                 Debug.WriteLine("The new recipe info is:");
@@ -196,8 +248,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// <example>
         /// GET: Recipe/DeleteConfirm/5
         /// </example>
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();//get token credentials
             string url = "FindRecipe/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             RecipeDto Recipe = response.Content.ReadAsAsync<RecipeDto>().Result;
@@ -213,8 +267,10 @@ namespace recipeManagementAppN01650001.Controllers
         /// POST: Recipe/Delete/5
         /// </example>
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();//get token credentials
             string url = "DeleteRecipe/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "Show";
 }
-
+@section Scripts {
+    <script src="~/Scripts/recipe.js"></script>
+}
 <div class="container mt-5">
     <div class="row mb-3">
         <div class="col-md-12">
@@ -12,28 +14,33 @@
             <a href="/Recipe/List" class="btn btn-primary mt-3">← Back to list</a>
             <a href="/Recipe/Edit/@Model.RecipeId" class="btn btn-primary mt-3">+ Edit</a>
             <a href="/Recipe/DeleteConfirm/@Model.RecipeId" class="btn btn-danger mt-3">Delete</a>
+            <button id="printRecipe" class="btn btn-secondary mt-3">Print Recipe</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="recipe">
         <div class="col-md-12">
             <p><strong>Title:</strong> @Model.Title</p>
             <p><strong>Description:</strong> @Model.Description</p>
             <p><strong>Category:</strong> @Model.Category</p>
             <p><strong>Cooking Time:</strong> @Model.CookingTime mins</p>
 
-            <p><strong>Ingredients:</strong></p>
+            <p class="m-0"><strong>Ingredients:</strong></p>
             <ul>
                 @foreach (var ingredient in Model.Ingredients)
                 {
-                    <li>@ingredient.IngredientQuantity @ingredient.IngredientUnit @ingredient.IngredientName</li>
+                    <li>
+                        <a href="/Ingredient/Details/@ingredient.IngredientId">
+                            @ingredient.IngredientQuantity @ingredient.IngredientUnit @ingredient.IngredientName
+                        </a>
+                    </li>
                 }
             </ul>
 
-            <p><strong>Instructions:</strong></p>
+            <p class="m-0"><strong>Instructions:</strong></p>
             <ol>
                 @foreach (var instruction in Model.Instructions)
                 {
-                    <li>@instruction.Description</li>
+                    <li><a href="/Instruction/Details/@instruction.InstructionId">@instruction.Description</a></li>
                 }
             </ol>
         </div>

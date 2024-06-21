@@ -1,0 +1,35 @@
+﻿@model recipeManagementAppN01650001.Models.ViewModels.DetailsIngredient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1>Ingredient Details</h1>
+            <a href="/Ingredient/List" class="btn btn-primary mt-3">← Back to list</a>
+            <a href="/Ingredient/Edit/@Model.SelectedIngredient.IngredientId" class="btn btn-primary mt-3">+ Edit</a>
+            <a href="/Ingredient/DeleteConfirm/@Model.SelectedIngredient.IngredientId" class="btn btn-danger mt-3">Delete</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p><strong>Ingredient Name:</strong> @Model.SelectedIngredient.IngredientName</p>
+            <p><strong>Ingredient Quantity:</strong> @Model.SelectedIngredient.IngredientQuantity</p>
+            <p><strong>Ingredient Unit:</strong> @Model.SelectedIngredient.IngredientUnit</p>
+
+            <p class="m-0">
+                <strong>
+                    Recipes Associated with this Ingredient:
+                </strong>
+                <ul>
+                    @foreach (var recipe in Model.RelatedRecipes)
+                    {
+                        <li><a href="/Recipe/Show/@recipe.RecipeId">@recipe.Title</a></li>
+                    }
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

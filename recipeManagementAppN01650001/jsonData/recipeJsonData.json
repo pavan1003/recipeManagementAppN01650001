@@ -36,13 +36,37 @@
         }
     ],
     "Instructions": [
-        { "Description": "Preheat the oven to 425°F." },
-        { "Description": "Peel, core, and slice the apples." },
-        { "Description": "Mix apples with sugar, cinnamon, and flour." },
-        { "Description": "Place one pie crust in a pie dish." },
-        { "Description": "Fill with apple mixture and dot with butter." },
-        { "Description": "Cover with the second pie crust and seal edges." },
-        { "Description": "Cut slits in the top crust." },
-        { "Description": "Bake for 45-50 minutes until golden brown." }
+        {
+            "Description": "Preheat the oven to 425°F.",
+            "StepNumber": 1
+        },
+        {
+            "Description": "Peel, core, and slice the apples.",
+            "StepNumber": 2
+        },
+        {
+            "Description": "Mix apples with sugar, cinnamon, and flour.",
+            "StepNumber": 3
+        },
+        {
+            "Description": "Place one pie crust in a pie dish.",
+            "StepNumber": 4
+        },
+        {
+            "Description": "Fill with apple mixture and dot with butter.",
+            "StepNumber": 5
+        },
+        {
+            "Description": "Cover with the second pie crust and seal edges.",
+            "StepNumber": 6
+        },
+        {
+            "Description": "Cut slits in the top crust.",
+            "StepNumber": 7
+        },
+        {
+            "Description": "Bake for 45-50 minutes until golden brown.",
+            "StepNumber": 8
+        }
     ]
 }
