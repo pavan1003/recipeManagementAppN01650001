@@ -16,7 +16,7 @@ RecipeManagementApp is an application designed to help users manage their recipe
 ### Setup Steps
 1. **Clone the Repository:**
    ```bash
-   git [clone https://github.com/your-repo/recipe-management-app.git](https://github.com/pavan1003/recipeManagementAppN01650001.git)
+   git clone https://github.com/pavan1003/recipeManagementAppN01650001.git
    ```
    
 2. **Open the Project:**
